@@ -24,7 +24,7 @@ Route::get('/', function () {
 Route::get('/signin', function () {
     return view('Signin');
 });
-
+// User routes
 Route::prefix('user')->group(function(){
 
     Route::post('/signin' , [UserController::class , 'store']);
