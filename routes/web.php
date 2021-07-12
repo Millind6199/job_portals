@@ -36,6 +36,7 @@ Route::prefix('user')->group(function(){
 
     Route::post('/jobapply/{id}',[ApplicationController::class,'store']);
     Route::get('/myapply',[ApplicationController::class, 'show']);
+    Route::get('/removeapply/{id}',[ApplicationController::class, 'destroy']);
     Route::post('/getJobsByCity', [JobController::class , 'getJobsByCityUser']);
 });
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class ApplicationController extends Controller
@@ -62,7 +63,7 @@ class ApplicationController extends Controller
 
         $data = Application::where('user_id', $user_id)
             ->join('jobs', 'applications.job_id', '=', 'jobs.id')
-            ->select('jobs.post','jobs.comp_name','applications.created_at')
+            ->select('jobs.post','jobs.comp_name','applications.id','applications.created_at')
             ->get();
 //        dd($data);
         return view('User/MyApplications',['data' => $data]);
@@ -98,8 +99,9 @@ class ApplicationController extends Controller
      * @param  \App\Models\Application  $application
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Application $application)
+    public function destroy(Application $application,$id)
     {
-        //
+            Application::destroy($id);
+            return redirect('/user/myapply');
     }
 }
